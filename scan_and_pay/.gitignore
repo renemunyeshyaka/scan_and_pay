@@ -1,5 +1,5 @@
 # Ignore application.properties file
-application.properties
+
 
 HELP.md
 target/
@@ -39,6 +39,3 @@ build/
 ### VS Code ###
 .vscode/
 
-### AP ###
-
-application.properties
