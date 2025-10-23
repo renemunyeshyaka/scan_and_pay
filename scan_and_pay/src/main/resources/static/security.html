@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Settings - ScanPay</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="/images/logo.png" alt="ScanPay" class="logo">
+                <span class="brand">ScanPay</span>
+            </div>
+            <div class="nav-user">
+                <span class="user-greeting">Hello, <span id="userName">User</span></span>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="/templates/dashboard.html" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="/templates/profile.html" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="/templates/security.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Security</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="/templates/dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/templates/profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="/templates/security.html" class="nav-item active">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </a>
+                <a href="/templates/payment-methods.html" class="nav-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment Methods</span>
+                </a>
+                <a href="/templates/transaction-history.html" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>Security Settings</h1>
+                <p>Manage your account security and privacy settings</p>
+            </div>
+
+            <div class="security-content">
+                <!-- Password Change -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Change Password</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" id="currentPassword" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" id="newPassword" class="form-input" required minlength="6">
+                                <div class="password-strength">
+                                    <div class="strength-meter">
+                                        <div class="strength-bar" id="strengthBar"></div>
+                                    </div>
+                                    <span class="strength-text" id="strengthText">Password strength</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" class="form-input" required>
+                                <div class="password-match" id="passwordMatch">
+                                    <i class="fas fa-check"></i>
+                                    <span>Passwords match</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="changePasswordBtn">
+                                Change Password
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Two-Factor Authentication -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Two-Factor Authentication</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Enable 2FA</h3>
+                                <p>Add an extra layer of security to your account</p>
+                            </div>
+                            <div class="security-action">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="twoFactorSetup" class="two-factor-setup" style="display: none;">
+                            <div class="setup-steps">
+                                <div class="setup-step">
+                                    <h4>Step 1: Scan QR Code</h4>
+                                    <div class="qr-code-placeholder" id="qrcodeContainer">
+                                        <!-- QR code will be generated here -->
+                                    </div>
+                                    <p class="setup-note">Scan this QR code with your authenticator app</p>
+                                </div>
+                                
+                                <div class="setup-step">
+                                    <h4>Step 2: Enter Verification Code</h4>
+                                    <div class="otp-container">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                        <input type="text" class="otp-input" maxlength="1">
+                                    </div>
+                                    <button class="btn btn-primary" id="verify2FABtn">Verify & Enable</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Management -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Active Sessions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="sessions-list" id="sessionsList">
+                            <div class="session-item current">
+                                <div class="session-info">
+                                    <h4>Current Session</h4>
+                                    <p>Chrome on Windows • <span id="currentLocation">Loading...</span></p>
+                                    <small>Started: <span id="sessionStart">Just now</span></small>
+                                </div>
+                                <div class="session-status">
+                                    <span class="status-badge status-success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="session-actions">
+                            <button class="btn btn-secondary" id="refreshSessionsBtn">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button class="btn btn-danger" id="logoutAllBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout All Other Devices
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security History -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Security History</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="security-history" id="securityHistory">
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="history-details">
+                                    <h4>Password Changed</h4>
+                                    <p>Your password was successfully updated</p>
+                                    <small>2 hours ago • Chrome on Windows</small>
+                                </div>
+                            </div>
+                            
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="history-details">
+                                    <h4>Successful Login</h4>
+                                    <p>You logged in from a new device</p>
+                                    <small>1 day ago • Safari on iPhone</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Success</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p id="successMessage">Operation completed successfully</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="closeModal('successModal')">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/security.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ScanPay</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <img src="/images/logo.png" alt="ScanPay Logo" class="logo">
+                    <span class="brand">ScanPay</span>
+                </div>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to your account</p>
+            </div>
+
+            <!-- Login Step -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail" class="form-label">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" id="loginPassword" name="password" class="form-input" required>
+                </div>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+
+            <!-- OTP Verification Step -->
+            <div id="otpStep" class="hidden">
+                <h2 class="auth-title">Enter Verification Code</h2>
+                <p class="auth-subtitle">We sent a code to your email</p>
+                
+                <form action="/login" method="post" id="verifyForm" class="auth-form">
+                    <div class="otp-container">
+                        <input type="text" class="otp-input" maxlength="1" required>
+                        <input type="text" class="otp-input" maxlength="1" required>
+                        <input type="text" class="otp-input" maxlength="1" required>
+                        <input type="text" class="otp-input" maxlength="1" required>
+                        <input type="text" class="otp-input" maxlength="1" required>
+                        <input type="text" class="otp-input" maxlength="1" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Verify</button>
+                </form>
+
+                <div class="resend-otp">
+                    <p>Didn't receive the code? <button type="button" id="resendOtpBtn" class="resend-btn" onclick="authManager.resendOTP()" disabled>Resend in <span id="resendTimer">60</span>s</button></p>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/register.html" class="auth-link">Sign up</a></p>
+				<p>Forget your password? <a href="/forgot-password.html" class="auth-link">Forgot Password</a></p>
+				<p>Remember your password? <a href="/" class="auth-link">Back Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

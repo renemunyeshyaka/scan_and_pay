@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan and Pay - Secure QR Payment System</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/images/logo.png" alt="Scan and Pay Logo" class="logo">
+                <span class="brand">Scan and Pay</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <div class="nav-auth" id="navAuth">
+					
+										
+					<a href="/login.html" class="nav-link login-btn">Login</a> &nbsp;
+					
+					<a href="/register.html" class="nav-link register-btn">Sign Up</a>
+					
+					
+					
+                </div>
+                <div class="nav-user" id="navUser" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Secure QR Payments Made Simple</h1>
+                <p class="hero-description">
+                    Scan and Pay enables fast, secure, and convenient QR-based payments 
+                    for merchants and customers alike. Experience the future of digital payments.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="getStartedBtn">Get Started</button>
+                    <button class="btn btn-secondary" id="learnMoreBtn">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="qr-demo">
+<!--                    <div class="qr-code" id="demoQrCode"></div>-->
+					<img src="/images/qr-code.svg">
+                    <p class="qr-demo-text">Scan to Pay</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Scan and Pay?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Bank-Level Security</h3>
+                    <p>Advanced encryption and OTP verification ensure your transactions are always secure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Payments</h3>
+                    <p>Process payments in seconds with our optimized QR code technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track your transactions and business performance with comprehensive dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Responsive design works perfectly on all devices - desktop, tablet, and mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="about" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Account</h3>
+                    <p>Sign up as a merchant or customer in minutes</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Generate QR Code</h3>
+                    <p>Merchants create dynamic QR codes for payments</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Scan & Pay</h3>
+                    <p>Customers scan the QR code to make secure payments</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Get Confirmed</h3>
+                    <p>Instant confirmation for both parties</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Scan and Pay</h3>
+                    <p>Revolutionizing digital payments with secure QR technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Scan and Pay. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - ScanPay</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="/images/logo.png" alt="ScanPay" class="logo">
+                <span class="brand">ScanPay</span>
+            </div>
+            <div class="nav-user">
+                <span class="user-greeting">Hello, <span id="userName">User</span></span>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="/templates/dashboard.html" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="/templates/profile.html" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="/templates/security.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Security</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="/templates/dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/templates/profile.html" class="nav-item active">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="/templates/security.html" class="nav-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </a>
+                <a href="/templates/payment-methods.html" class="nav-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment Methods</span>
+                </a>
+                <a href="/templates/transaction-history.html" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1>My Profile</h1>
+                <p>Manage your personal information and account settings</p>
+            </div>
+
+            <div class="profile-content">
+                <!-- Personal Information -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Personal Information</h2>
+                        <button class="btn btn-secondary" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <form id="profileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" id="profileName" class="form-input" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" id="profileEmail" class="form-input" readonly>
+                                    <div class="verification-status" id="emailStatus">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>Not verified</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" id="profilePhone" class="form-input" readonly>
+                                    <div class="verification-status" id="phoneStatus">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>Not verified</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Account Type</label>
+                                    <input type="text" id="profileRole" class="form-input" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-actions" id="profileActions" style="display: none;">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Account Status -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Account Status</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <div class="status-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="status-info">
+                                    <h3>Account Verification</h3>
+                                    <p id="accountStatus">Pending</p>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="status-info">
+                                    <h3>Member Since</h3>
+                                    <p id="memberSince">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="status-info">
+                                    <h3>Security Level</h3>
+                                    <p id="securityLevel">Basic</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="actions-grid">
+                            <button class="action-btn" onclick="verifyEmail()">
+                                <i class="fas fa-envelope"></i>
+                                <span>Verify Email</span>
+                            </button>
+                            <button class="action-btn" onclick="verifyPhone()">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Verify Phone</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='/templates/security.html'">
+                                <i class="fas fa-lock"></i>
+                                <span>Change Password</span>
+                            </button>
+                            <button class="action-btn" onclick="downloadData()">
+                                <i class="fas fa-download"></i>
+                                <span>Export Data</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Email Verification Modal -->
+    <div id="verifyEmailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Verify Email Address</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>We've sent a verification code to your email address.</p>
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" required>
+                    <input type="text" class="otp-input" maxlength="1" required>
+                    <input type="text" class="otp-input" maxlength="1" required>
+                    <input type="text" class="otp-input" maxlength="1" required>
+                    <input type="text" class="otp-input" maxlength="1" required>
+                    <input type="text" class="otp-input" maxlength="1" required>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="verifyEmailBtn">Verify Email</button>
+                    <button class="btn btn-secondary" onclick="closeModal('verifyEmailModal')">Cancel</button>
+                </div>
+                <div class="resend-otp">
+                    <p>Didn't receive the code? <button type="button" class="resend-btn">Resend Code</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>

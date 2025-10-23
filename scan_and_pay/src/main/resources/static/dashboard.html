@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ScanPay</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="/images/logo.png" alt="ScanPay" class="logo">
+                <span class="brand">ScanPay</span>
+            </div>
+            <div class="nav-user">
+                <span class="user-greeting">Hello, <span id="userName">User</span></span>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-item active" data-section="overview">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#transactions" class="nav-item" data-section="transactions">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="#payments" class="nav-item" data-section="payments">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Make Payment</span>
+                </a>
+                <a href="#payment-methods" class="nav-item" data-section="payment-methods">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment Methods</span>
+                </a>
+                <a href="#security" class="nav-item" data-section="security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome to your ScanPay dashboard</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Spent</h3>
+                            <p class="stat-value" id="totalSpent">$0.00</p>
+                            <span class="stat-change positive">+0% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Transactions</h3>
+                            <p class="stat-value" id="totalTransactions">0</p>
+                            <span class="stat-change positive">+0 this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Success Rate</h3>
+                            <p class="stat-value" id="successRate">100%</p>
+                            <span class="stat-change positive">All successful</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Recent Transactions</h2>
+                        <a href="#transactions" class="view-all">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="transactions-list" id="recentTransactions">
+                            <div class="empty-state">
+                                <i class="fas fa-receipt"></i>
+                                <p>No transactions yet</p>
+                                <a href="#payments" class="btn btn-primary">Make Your First Payment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions" class="content-section">
+                <div class="section-header">
+                    <h1>Transaction History</h1>
+                    <p>View and manage your payment history</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>All Transactions</h2>
+                        <div class="filters">
+                            <select id="transactionFilter" class="filter-select">
+                                <option value="all">All Transactions</option>
+                                <option value="success">Successful</option>
+                                <option value="failed">Failed</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Merchant</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Reference</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionsTable">
+                                    <tr>
+                                        <td colspan="5" class="text-center">No transactions found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Make Payment Section -->
+            <section id="payments" class="content-section">
+                <div class="section-header">
+                    <h1>Make Payment</h1>
+                    <p>Scan a QR code to make a payment</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="payment-container">
+                        <div class="qr-scanner-section">
+                            <h3>Scan QR Code</h3>
+                            <div class="qr-scanner">
+                                <div class="scanner-placeholder">
+                                    <i class="fas fa-camera"></i>
+                                    <p>Click to scan QR code</p>
+                                </div>
+                                <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
+                            </div>
+                            <button class="btn btn-primary" onclick="document.getElementById('qrFileInput').click()">
+                                <i class="fas fa-camera"></i> Scan QR Code
+                            </button>
+                        </div>
+
+                        <div class="payment-details-section">
+                            <h3>Payment Details</h3>
+                            <div class="payment-form">
+                                <div class="form-group">
+                                    <label>Merchant</label>
+                                    <input type="text" id="merchantName" class="form-input" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    <input type="text" id="paymentAmount" class="form-input" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Payment Method</label>
+                                    <select id="paymentMethod" class="form-input">
+                                        <option value="">Select payment method</option>
+                                    </select>
+                                </div>
+                                <button id="processPaymentBtn" class="btn btn-primary" disabled>
+                                    Process Payment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Methods Section -->
+            <section id="payment-methods" class="content-section">
+                <div class="section-header">
+                    <h1>Payment Methods</h1>
+                    <p>Manage your payment options</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Your Payment Methods</h2>
+                        <button class="btn btn-primary" id="addPaymentMethodBtn">
+                            <i class="fas fa-plus"></i> Add New
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="payment-methods-grid" id="paymentMethodsList">
+                            <div class="empty-state">
+                                <i class="fas fa-credit-card"></i>
+                                <p>No payment methods added</p>
+                                <button class="btn btn-primary" id="addFirstPaymentMethod">Add Payment Method</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Section -->
+            <section id="security" class="content-section">
+                <div class="section-header">
+                    <h1>Security Settings</h1>
+                    <p>Manage your account security</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="security-settings">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Two-Factor Authentication</h3>
+                                <p>Add an extra layer of security to your account</p>
+                            </div>
+                            <div class="security-action">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Change Password</h3>
+                                <p>Update your account password</p>
+                            </div>
+                            <div class="security-action">
+                                <button class="btn btn-secondary" id="changePasswordBtn">Change Password</button>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Login Activity</h3>
+                                <p>View your recent login history</p>
+                            </div>
+                            <div class="security-action">
+                                <button class="btn btn-secondary" id="viewLoginActivityBtn">View Activity</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Payment Method Modal -->
+    <div id="addPaymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Payment Method</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addPaymentForm">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" class="form-input" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" class="form-input" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" class="form-input" placeholder="John Doe">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Payment Method</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
