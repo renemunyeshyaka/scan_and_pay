@@ -1,5 +1,5 @@
 # Ignore application.properties file
-
+application.properties
 
 HELP.md
 target/
