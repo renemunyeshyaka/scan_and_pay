@@ -1,3 +1,6 @@
+# Ignore everything in logs directory
+logs/
+
 # Ignore application.properties file
 application.properties
 
